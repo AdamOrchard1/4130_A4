@@ -1,0 +1,11 @@
+Model Information:
+* title:	CC0 - Snowflake
+* source:	https://sketchfab.com/3d-models/cc0-snowflake-aea026ecfe5f4a8c844dde6bd5b4fec8
+* author:	plaggy (https://sketchfab.com/plaggy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "CC0 - Snowflake" (https://sketchfab.com/3d-models/cc0-snowflake-aea026ecfe5f4a8c844dde6bd5b4fec8) by plaggy (https://sketchfab.com/plaggy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

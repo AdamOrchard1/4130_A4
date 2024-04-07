@@ -9,7 +9,8 @@ import * as THREE from "three";
 import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-let scene, camera, renderer, sphereFront, sphereTop;
+let scene = new THREE.Scene();
+let camera, renderer, sphereFront, sphereTop;
 const gui = new dat.GUI();
 const controls = {
   switch: false,
@@ -26,11 +27,16 @@ const controls = {
   },
 };
 
-var model;
+let snowflakes = [];
+let numSnowflakes = 100;
+let maxRange = 10;
+let minRange = -10;
+let minHeight = 5;
 
-gui.add(controls, 'cameraZ', 0, 10).onChange(updateCameraFrontPosition);
-gui.add(controls, 'cameraY', 0, 10).onChange(updateCameraTopPosition);
-gui.add(controls, 'cameraX', 0, 10).onChange(updateCameraTopPosition);
+
+gui.add(controls, 'cameraZ', 0, 10).onChange(updateCameraPosition);
+gui.add(controls, 'cameraY', 0, 10).onChange(updateCameraPosition);
+gui.add(controls, 'cameraX', 0, 10).onChange(updateCameraPosition);
 
 
 function init() {
@@ -49,8 +55,6 @@ function init() {
 
   let orbitcontrols = new OrbitControls(camera, renderer.domElement);
 
-  addLighting();
-  
   //christmas mugs
   const loader = new GLTFLoader();
   loader.load('./mugs/scene.gltf', function(gltf){
@@ -73,10 +77,22 @@ function init() {
   }, undefined, function(error){
     console.error(error);
   });
+
+  //christmas tree
+  // const treeLoader = new GLTFLoader();
+  // treeLoader.load('./christmas_tree_polycraft/scene.gltf', function(gltf){
+  //   var tree = gltf.scene.children[0];
+  //   tree.scale.set(0.006,0.006,0.006); 
+  //   scene.add(tree);
+  //   tree.position.set(1,0,0);
+
+  // }, undefined, function(error){
+  //   console.error(error);
+  // });
   
+
+  addLighting();
 }
-
-
 
 //Update front camera
 function updateCameraFrontPosition() {
@@ -98,6 +114,13 @@ function sphereDamping(){
   }
 }
 
+
+function updateCameraPosition() {
+  camera.position.set(controls.cameraX, controls.cameraY, controls.cameraZ);
+
+  camera.lookAt(0, 0, 0);
+}
+
 function addLighting() {
   
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // soft white light
@@ -109,12 +132,74 @@ function addLighting() {
   scene.add(directionalLight);
 }
 
+function addSnowflakes() {
+  for (let i = 0; i < numSnowflakes; i++) {
+    // Randomize position around the mugs and the table
+    let x = Math.random() * (maxRange - minRange) + minRange;
+    let z = Math.random() * (maxRange - minRange) + minRange;
+    let y = Math.random() * minHeight;
+    snowflakes.push({ x: x, y: y, z: z });
+  }
+}
+
+// Function to update snowflakes positions
+function updateSnowflakes() {
+  for (let i = 0; i < numSnowflakes; i++) {
+    // Move snowflakes down
+    snowflakes[i].y -= 0.05; // Adjust speed as needed
+
+    // If snowflake falls below ground, reset its position
+    if (snowflakes[i].y < 0) {
+      snowflakes[i].x = Math.random() * (maxRange - minRange) + minRange;
+      snowflakes[i].z = Math.random() * (maxRange - minRange) + minRange;
+      snowflakes[i].y = minHeight;
+    }
+  }
+}
+
+// Function to render snowflakes
+function renderSnowflakes() {
+  let snowflakeGeometry = new THREE.BufferGeometry();
+  let snowflakeVertices = [];
+
+  // Create vertices for each snowflake
+  for (let i = 0; i < numSnowflakes; i++) {
+    snowflakeVertices.push(snowflakes[i].x, snowflakes[i].y, snowflakes[i].z);
+  }
+
+  // Set snowflake positions
+  snowflakeGeometry.setAttribute('position', new THREE.Float32BufferAttribute(snowflakeVertices, 3));
+
+  // Create snowflake material
+  let snowflakeMaterial = new THREE.PointsMaterial({
+    size: 0.1, // Adjust size as needed
+    color: 0xffffff, // Adjust color as needed
+    transparent: true,
+    opacity: 0.8 // Adjust opacity as needed
+  });
+
+  // Create snowflake particles and add them to the scene
+  let snowflakeParticles = new THREE.Points(snowflakeGeometry, snowflakeMaterial);
+  scene.add(snowflakeParticles);
+}
+
+addSnowflakes();
+
 function animate(time) {
   requestAnimationFrame(animate);
 
   sphereDamping();//allows the damping to work
 
-  // orbitcontrols.update()
+  updateSnowflakes();
+
+  scene.children.forEach(child => {
+    if (child instanceof THREE.Points) {
+      scene.remove(child);
+    }
+  });
+
+  // Render snowflakes
+  renderSnowflakes();
   
   //front view with a blue background
   renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
