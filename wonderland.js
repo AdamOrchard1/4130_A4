@@ -28,7 +28,7 @@ const controls = {
 };
 
 let snowflakes = [];
-let numSnowflakes = 100;
+let numSnowflakes = 250;
 let maxRange = 10;
 let minRange = -10;
 let minHeight = 5;
@@ -60,7 +60,7 @@ function init() {
   loader.load('./mugs/scene.gltf', function(gltf){
     var cups = gltf.scene.children[0];
     scene.add(cups);
-    cups.position.set(0,0,0);
+    cups.position.set(0,-0.1,0);
 
   }, undefined, function(error){
     console.error(error);
@@ -79,17 +79,30 @@ function init() {
   });
 
   //christmas tree
-  // const treeLoader = new GLTFLoader();
-  // treeLoader.load('./christmas_tree_polycraft/scene.gltf', function(gltf){
-  //   var tree = gltf.scene.children[0];
-  //   tree.scale.set(0.006,0.006,0.006); 
-  //   scene.add(tree);
-  //   tree.position.set(1,0,0);
+  const treeLoader = new GLTFLoader();
+  treeLoader.load('./mini_christmas_tree/scene.gltf', function(gltf){
+    var tree = gltf.scene.children[0];
+    tree.scale.set(4,4,4); 
+    tree.rotation.z += 0.5
+    scene.add(tree);
+    tree.position.set(-2,-1,-2.5);
 
-  // }, undefined, function(error){
-  //   console.error(error);
-  // });
-  
+  }, undefined, function(error){
+    console.error(error);
+  });
+
+  //snowman
+  const snowmanLoader = new GLTFLoader();
+  snowmanLoader.load('./snowman_-_blockbech_project/scene.gltf', function(gltf){
+    var snowman = gltf.scene.children[0];
+    snowman.scale.set(1,1,1); 
+    snowman.rotation.z += 1;
+    scene.add(snowman);
+    snowman.position.set(2,-1,2);
+
+  }, undefined, function(error){
+    console.error(error);
+  });
 
   addLighting();
 }
@@ -172,7 +185,7 @@ function renderSnowflakes() {
 
   // Create snowflake material
   let snowflakeMaterial = new THREE.PointsMaterial({
-    size: 0.1, // Adjust size as needed
+    size: 0.2, // Adjust size as needed
     color: 0xffffff, // Adjust color as needed
     transparent: true,
     opacity: 0.8 // Adjust opacity as needed

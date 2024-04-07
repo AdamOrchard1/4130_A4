@@ -1,0 +1,8 @@
+Model Information:
+* title:	Mini Christmas Tree
+* source:	https://sketchfab.com/3d-models/mini-christmas-tree-bfcc350a183a4fbeac0eee9880af6b3d
+* author:	TiraArt (https://sketchfab.com/TiraArt)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

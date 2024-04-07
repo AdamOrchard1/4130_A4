@@ -1,0 +1,11 @@
+Model Information:
+* title:	SnowMan - Blockbech Project
+* source:	https://sketchfab.com/3d-models/snowman-blockbech-project-b7d9ac3f6fbe4dc286a03bad598661f3
+* author:	Intstar (https://sketchfab.com/intstar)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "SnowMan - Blockbech Project" (https://sketchfab.com/3d-models/snowman-blockbech-project-b7d9ac3f6fbe4dc286a03bad598661f3) by Intstar (https://sketchfab.com/intstar) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
