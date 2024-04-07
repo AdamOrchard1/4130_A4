@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wrapped Present
+* source:	https://sketchfab.com/3d-models/wrapped-present-c8b183346ad7497e83e3f88b704312ed
+* author:	Skipperino (https://sketchfab.com/skipperino)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wrapped Present" (https://sketchfab.com/3d-models/wrapped-present-c8b183346ad7497e83e3f88b704312ed) by Skipperino (https://sketchfab.com/skipperino) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
